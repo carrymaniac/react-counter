@@ -5,21 +5,49 @@ class Counter extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            num: 0
+            num: 0,
+            fatherNum: this.props.flag
         }
     }
-    clickFun = () => {
-        // let num = this.state.num;
-        // num++;
-        // this.setState({num: num})
-        this.setState({num:++this.state.num});
+    clickIncrease = () => {
+        this.setState((state, props) => {
+            let myNum = state.num
+            myNum++;
+            props.calculate(1);
+            return {
+                num: myNum
+            }
+        })
+    }
+    clickDecrease = () => {
+        this.setState((state, props) => {
+            let myNum = state.num
+            if (state.num == 0) {
+                return
+            }
+            myNum--;
+            props.calculate(-1);
+            return {
+                num: myNum
+            }
+        })
+    }
+    static getDerivedStateFromProps(props, state) {
+        if (state.fatherNum != props.flag) {
+            return {
+                num: 0,
+                fatherNum: props.flag
+            }
+        }
+        return null
+
     }
     render() {
         return (
             <div>
-                <button onClick={this.clickFun}> + </button>
-                <marker>{this.state.num}</marker>
-                <button> - </button>
+                <button onClick={this.clickIncrease}> + </button>
+                <span>{this.state.num}</span>
+                <button onClick={this.clickDecrease}> - </button>
             </div>
         )
     }
