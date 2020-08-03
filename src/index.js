@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import CounterGroup from './components/CounterGroup/index'
-import CounterGroupForTick from './components/CounterGroupForTick/index'
 import * as serviceWorker from './serviceWorker';
+import store from './store';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <CounterGroup num="5"></CounterGroup>
+    <CounterGroup store={store}></CounterGroup>
   </React.StrictMode>,
   document.getElementById('root')
 );

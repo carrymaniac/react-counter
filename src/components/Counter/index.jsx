@@ -1,4 +1,5 @@
 import React from 'react'
+import {clickIncrease,clickDecrease} from '../../actions/counter-actions'
 
 
 class Counter extends React.Component {
@@ -6,14 +7,23 @@ class Counter extends React.Component {
         super(props)
         this.state = {
             num: 0,
-            fatherNum: this.props.flag
+            fatherNum: 1,
+            store: this.props.store
         }
+        this.props.store.subscribe(()=>{
+            let state = this.props.store.getState()
+            console.log(state)
+            if(this.state.fatherNum != state.nums){
+                console.log("重设了counter的值，原因是fatherNum="+this.state.fatherNum+" 而state.num="+state.nums)
+                this.setState({num: 0,fatherNum:state.nums})
+            }
+        });
     }
     clickIncrease = () => {
         this.setState((state, props) => {
             let myNum = state.num
             myNum++;
-            props.calculate(1);
+            props.store.dispatch(clickIncrease());
             return {
                 num: myNum
             }
@@ -26,21 +36,11 @@ class Counter extends React.Component {
                 return
             }
             myNum--;
-            props.calculate(-1);
+            props.store.dispatch(clickDecrease());
             return {
                 num: myNum
             }
         })
-    }
-    static getDerivedStateFromProps(props, state) {
-        if (state.fatherNum != props.flag) {
-            return {
-                num: 0,
-                fatherNum: props.flag
-            }
-        }
-        return null
-
     }
     render() {
         return (
