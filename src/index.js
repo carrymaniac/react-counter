@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import CounterGroup from './components/CounterGroup/index'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CounterGroup num="5"></CounterGroup>
   </React.StrictMode>,
   document.getElementById('root')
 );
