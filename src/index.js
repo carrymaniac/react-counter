@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import CounterGroup from './components/CounterGroup/index'
+import CounterGroupForTick from './components/CounterGroupForTick/index'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
