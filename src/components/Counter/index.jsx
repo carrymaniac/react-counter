@@ -23,11 +23,11 @@ class Counter extends React.Component {
         this.setState((state, props) => {
             let myNum = state.num
             myNum++;
-            props.store.dispatch(clickIncrease());
             return {
                 num: myNum
             }
         })
+        this.props.store.dispatch(clickIncrease());
     }
     clickDecrease = () => {
         this.setState((state, props) => {
@@ -36,11 +36,11 @@ class Counter extends React.Component {
                 return
             }
             myNum--;
-            props.store.dispatch(clickDecrease());
             return {
                 num: myNum
             }
         })
+        this.props.store.dispatch(clickDecrease());
     }
     render() {
         return (

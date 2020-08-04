@@ -2,10 +2,14 @@ import React from 'react'
 import Counter from '../Counter/index'
 import {clickReset} from '../../actions/counter-actions'
 
+
 class CounterGroup extends React.Component {
     constructor(props) {
         super(props)
         this.state = { num: 1, total: 0}
+    }
+
+    componentDidMount(){
         this.props.store.subscribe(()=>{
             let state = this.props.store.getState()
             console.log("现在的总值为："+state.total)
