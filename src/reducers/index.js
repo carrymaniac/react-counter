@@ -4,7 +4,7 @@ import numsReducer from './num-reducer';
 
 const allReducer = {
     // 目前counters数量
-    nums: numsReducer,
+    count: numsReducer,
     // 目前总和
     total: totalReducer
 }

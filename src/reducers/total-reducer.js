@@ -1,4 +1,4 @@
-import {ADD_TOTAL,REDUCE_TOTAL,RESET_NUM} from '../actions/counter-actions'
+import {ADD_TOTAL,REDUCE_TOTAL,RESET_COUNTER} from '../actions/counter-actions'
 const initialStateTotal = 0;
 export default function(state=initialStateTotal,action){
     switch(action.type){
@@ -8,7 +8,7 @@ export default function(state=initialStateTotal,action){
       case REDUCE_TOTAL:{
         return state + action.payload;
       }
-      case RESET_NUM:{
+      case RESET_COUNTER:{
         return 0;
       }
       default:

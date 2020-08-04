@@ -1,49 +1,44 @@
 import React from 'react'
-import {clickIncrease,clickDecrease} from '../../actions/counter-actions'
-
 
 class Counter extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             num: 0,
-            fatherNum: 1,
-            store: this.props.store
+            count: 1,
         }
-        this.props.store.subscribe(()=>{
-            let state = this.props.store.getState()
-            console.log(state)
-            if(this.state.fatherNum != state.nums){
-                console.log("重设了counter的值，原因是fatherNum="+this.state.fatherNum+" 而state.num="+state.nums)
-                this.setState({num: 0,fatherNum:state.nums})
-            }
-        });
     }
     clickIncrease = () => {
         this.setState((state, props) => {
-            let myNum = state.num
-            myNum++;
+            let n = state.num
+            n++;
             return {
-                num: myNum
+                num: n
             }
         })
-        this.props.store.dispatch(clickIncrease());
+        this.props.addTotal();
     }
     clickDecrease = () => {
         this.setState((state, props) => {
-            let myNum = state.num
-            if (state.num == 0) {
+            let n = state.num
+            if (state.num === 0) {
                 return
             }
-            myNum--;
+            n--;
             return {
-                num: myNum
+                num: n
             }
         })
-        this.props.store.dispatch(clickDecrease());
+        this.props.reduceTotal(); 
+    }
+    static getDerivedStateFromProps(props,state){
+        if(props.count !== state.count){
+            return{count:props.count,num:0}
+        }
+        return null
     }
     render() {
-        return (
+        return ( 
             <div>
                 <button onClick={this.clickIncrease}> + </button>
                 <span>{this.state.num}</span>
@@ -54,4 +49,4 @@ class Counter extends React.Component {
 }
 
 
-export default Counter 
+export default Counter

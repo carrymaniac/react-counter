@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CounterGroup from './components/CounterGroup/index'
 import * as serviceWorker from './serviceWorker';
 import store from './store';
+import { Provider } from 'react-redux';
+import CounterGroupContainer from './container/CounterGroupContainer';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CounterGroup store={store}></CounterGroup>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <CounterGroupContainer/>
+  </Provider>,
   document.getElementById('root')
 );
 
